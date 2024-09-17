@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-app.use(express.json()); // To parse JSON data
+app.use(express.json()); // Middleware to parse JSON bodies
 
 // Define the /handle-redirect route
 app.post('/handle-redirect', (req, res) => {
@@ -11,6 +11,11 @@ app.post('/handle-redirect', (req, res) => {
   } else {
     res.status(400).send('Missing checkout_url');
   }
+});
+
+// Define a catch-all route for GET requests to test the server
+app.get('/', (req, res) => {
+  res.send('Server is running');
 });
 
 // Start the server
