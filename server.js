@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Stripe Redirect Server!');
+});
+
+// Handle redirect
 app.post('/handle-redirect', (req, res) => {
   const { checkout_url } = req.body;
   if (checkout_url) {
@@ -12,5 +18,5 @@ app.post('/handle-redirect', (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
